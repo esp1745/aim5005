@@ -63,5 +63,26 @@ class TestFeatures(TestCase):
 
     # TODO: Add a test of your own below this line
     
+    def test_standard_scaler_transform(self):
+        scaler = StandardScaler()
+        data = np.array([[0, 0], [0, 0], [1, 1], [1, 1]])
+        expected = np.array([[-1., -1.], [-1., -1.], [1., 1.], [1., 1.]])
+    
+        scaler.fit(data)
+        result = scaler.transform(data)  # Define result before using it
+    
+        assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1, -1), result.reshape(1, -1))
+
+    
+    def test_standard_scaler_transform_new_case(self):
+        scaler = StandardScaler()
+        data = np.array([[0, 0], [0, 0], [1, 1], [1, 1]])
+        expected = np.array([[-1., -1.], [-1., -1.], [1., 1.], [1., 1.]])
+        
+        scaler.fit(data)
+        result = scaler.transform(data)
+        
+        assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1,-1), result.reshape(1,-1))
+
 if __name__ == '__main__':
     unittest.main()
